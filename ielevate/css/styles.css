@@ -1,0 +1,886 @@
+/* Grundläggande styling */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap');
+
+/* Grundläggande inställningar */
+html, body {
+    margin: 0;
+    padding:0;
+    overflow-x: hidden;
+
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, rgb(248, 239, 247), rgba(255, 245, 195, 0.5), rgba(229, 233, 218, 0.6));
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+
+/* Fullscreen Hero Section with Marquee */
+.marquee {
+    position: relative;
+    width: 100vw;
+    height: 100vh; /* Full screen height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../images/firstside2.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.marquee_text {
+    position:relative;
+    white-space: nowrap;
+    animation: marquee 15s linear infinite;
+    font-size: 10vw; /* Responsive big text */
+    color: white;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Marquee animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+.dashboard_text {
+    position: absolute;
+    justify-content: center;
+    text-align: center;
+    font-size: 2em;
+    color: #ffffff ;
+    border-radius: 10px;
+    z-index: 10;
+    top: 45%;
+    left: 30%;
+    margin-left: 0;
+    margin-right: 0;
+}
+header {
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+}
+
+.navigation {
+    display:flex;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    align-items: center;
+    justify-content: space-between; /* Space between brand and nav links */
+    background: rgb(255, 255, 255);
+    min-height: 50px;
+    padding: 0 20px;
+}
+
+.navbrand {
+    padding: 10px;
+    font-size: 2.5rem;
+    font-weight: lighter;
+    background: linear-gradient(90deg, #ff6ec4, #658086, #f1f3ed56);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+}
+
+.nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+
+.nav-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-center ul,
+.nav-right ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.nav-center ul li a,
+.nav-right ul li a {
+    text-decoration: none;
+    color:#ff6ec4;
+
+}
+.nav-center ul li,
+.nav-right ul li {
+    position: relative; /* Needed for positioning ::after */
+    color: #ff6ec4;
+}
+
+.nav-center ul li::after {
+    content: '';
+    width: 0%;
+    background: #a07b8f;
+    height: 3px;
+    position: absolute;
+    bottom: 0; /* Adjust based on your design */
+    left: 0;
+    transition: 0.7s ease-in-out;
+}
+
+.nav-center ul li:hover::after{
+    width: 100%;
+}
+
+
+
+.nav-right ul li {
+    color: rgb(255, 255, 255);
+    background-color: #cd0275;
+
+    border-radius: 10%;
+    margin-right: 50px;
+    padding: 05px;
+}
+
+.nav-right ul li:hover{
+background-color: #ff6ec4;
+font-size: larger;
+transition: 0.7s ease-in-out;
+}
+
+/* Göm popup-formulären som standard */
+.form-box,
+.form-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.form-overlay {
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+}
+
+
+.form-box {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    z-index: 1000;
+    width: 350px;    
+    height: 400px;  
+    box-shadow:rgba(0, 0, 0, 0.3); 
+    text-align: left;
+}
+
+/* Visa popup när checkbox är markerad */
+#login-toggle:checked ~ #login-overlay,
+#login-toggle:checked ~ .login {
+    display: block;
+}
+
+#signup-toggle:checked ~ #signup-overlay,
+#signup-toggle:checked ~ .signup {
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+
+.form-box h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.form-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-box label {
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+
+.searchform {
+    position: absolute;
+    top: 60px;
+    
+   
+
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 15;
+    align-items: center;
+    justify-items: right;
+    justify-content: right;
+    border-radius: 6%;
+    font-size: 1.0rem; 
+    background: rgba(255, 255, 255, 0.2); /* lätt bakgrund för kontrast */
+    backdrop-filter: blur(5px); /* sudd-effekt för stil */
+}
+
+.searchform input[type="text"] {
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.searchform button {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+
+/* Sektioner */
+main {
+    background-image: url(../images/bakgrundstartsidan.png);
+    background-size: cover;
+    background-position: center; /* detta är bättre än fyra värden som inte funkar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.dashboard, .mål, .profil, .uppföljning, .boka-tid {
+    width: 60%;
+    max-width: 400px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.348);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Alternerande placering */
+.dashboard {
+    position: relative; /* Ensures that the top property works */
+    align-self: center; /* Centers the content */
+    max-width: 100%; /* Ensure it takes full width */
+    padding-top: 100px; /* Creates space from top */
+    margin-top: 50px;   /* Adds spacing after the marquee */
+    text-align: center;
+}
+
+.mål {
+    align-self: flex-start;
+    margin-left: 10%;
+}
+
+.profil {
+    align-self: flex-end;
+    margin-right: 10%;
+}
+
+.uppföljning {
+    align-self: flex-start;
+    margin-left: 10%;
+}
+
+
+h3 {
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #cd0275;
+}
+
+p {
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.toggle-kontakt {
+    display: none;
+}
+.kontakt-info {
+    display: none;
+    margin-top: 10px;
+}
+.toggle-kontakt:checked ~ .kontakt-info {
+    display: block;
+}
+.boka-now-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #cd0275;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+.boka-now-btn:hover {
+    background: #b10060;
+}
+/* --- Footer --- */
+
+footer {
+    background: linear-gradient(90deg, #ffcece, #b1024e); /* Energisk gradient */
+    padding: 15px; /* Mindre padding för en smalare footer */
+    width: 100%;
+    margin-top: 30px;
+    border-top: 3px solid #1abc9c;
+    text-align: center;
+    position:relative;
+    bottom: 0;
+    left: 0;
+    z-index: 9999; /* Säkerställ att footern ligger över andra element */
+    font-size: 0.5rem; /* Mindre textstorlek */
+
+}
+
+.footer-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.footer-info {
+    width: 100%;
+    text-align:justify;
+    color: white;
+    padding: 5px 40px;
+    display: flex; /* Use flexbox for horizontal alignment */
+    gap: 50px; /* Adds space between elements */
+    justify-content: flex-end;
+}
+.footer-info p {
+    margin: 0;
+}
+
+.footer-info a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-info a:hover {
+    color: #cd0275;
+    text-decoration: underline;
+}
+
+footer p {
+    color: white;
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 5px 0;
+}
+
+---------------------
+/*Daglig Uppföljning */
+.loggprocess h3 {
+    font-family: 'Nunito', sans-serif;  /* Ett mjukt, rundat typsnitt */
+    font-size: 28px;  /* En något mindre storlek för att hålla det lugnt */
+    font-weight: 400;  /* Lättare vikt för en vänligare ton */
+    text-align: center;  /* Centrera rubriken för en harmonisk look */
+    color: #cd0275;  /* Använd samma varma rosa nyans som för rubriken */
+    letter-spacing: 1px;  /* Mjukt avstånd mellan bokstäverna för en luftigare känsla */
+    margin-bottom: 15px;  /* Lätt avstånd under rubriken */
+    text-shadow: none;  /* Håll rubriken ren och enkel */
+}
+
+.loggprocess p {
+    font-family: 'Open Sans', sans-serif;  /* Ett enkelt och vänligt sans-serif typsnitt */
+    font-size: 18px;  /* Lagom storlek för att vara lättläst och avkopplande */
+    color: #495057;  /* En mjuk, neutral grå nyans för texten */
+    line-height: 1.8;  /* Ökat radavstånd för en mer luftig och lättläst text */
+    text-align: center;  /* Centrera texten för att skapa en balanserad look */
+    max-width: 750px;  /* Begränsa textbredden för bättre läsbarhet */
+    margin: 0 auto;  /* Centrera hela blocket */
+    padding: 20px;  /* Ge texten lite utrymme runt sig */
+}
+
+.loggprocess {
+    background-color: #F4F6F9;  /* Ljus, nästan vit bakgrund för en lugn känsla */
+    border-radius: 20px;  /* Runda hörn för att göra designen mjukare */
+    padding: 40px;  /* Generöst utrymme runt texten för en luftig känsla */
+    box-shadow: 0px 8px 20px rgba(210, 172, 20, 0.5);  /* Subtil skugga för ett mjukt djup */
+    text-align: center;  /* Centrera hela blocket för en mer harmonisk design */
+    width: 80%;  /* Matcha rubrikens bredd på 80% */
+    max-width: 850px;  /* Maximal bredd på blocket */
+    margin: 0 auto;  /* Centrera loggprocessen horisontellt */
+    margin-top: 50px;  /* Lägg till lite utrymme ovanför för att inte kännas trångt */
+    padding-top: 20px;  /* Alternativt kan du justera padding för att finjustera utrymmet */
+}
+
+.loggprocess button {
+    font-family: 'Nunito', sans-serif;  /* Samma typsnitt för enhetlighet */
+    font-size: 18px;  /* För att knappen ska kännas lättläst och avkopplande */
+    background-color: #cd0275;  /* Färgen som matchar rubriken */
+    color: white;  /* Vit text på knappen för kontrast */
+    border: none;  /* Ingen kant för en ren känsla */
+    border-radius: 15px;  /* Mjuka kanter på knappen för en vänlig känsla */
+    padding: 12px 30px;  /* Tillräckligt med utrymme för att knappen ska kännas bekväm */
+    cursor: pointer;  /* Visar att det är en interaktiv knapp */
+    transition: background-color 0.3s ease;  /* Liten övergång för att ge knappen ett mjukt hover-effekt */
+}
+
+.loggprocess button:hover {
+    background-color: #a8025d;  /* Lite mörkare rosa vid hover för att ge feedback */
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #cd0275;
+    box-shadow: 0 0 5px rgba(205, 2, 117, 0.5);
+}
+
+.file-input {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.file-input:hover {
+    background-color: #f1f1f1;
+}
+
+/* Knappstil */
+button, input[type="submit"] {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #ed4a99, #fe9bc4);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:hover, input[type="submit"]:hover {
+    background: #fe1773;
+    transform: translateY(-2px);
+}
+
+button:active, input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+.progress-stats {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.progress-stats h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: #cd0275;
+}
+
+.progress-stats p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.progress-stats .btn-stats {
+    background-color: #564caf;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.progress-stats .btn-stats:hover {
+    background-color: #5145a0;
+}
+ 
+.rubrik h3 {
+    font-family: 'Poppins', sans-serif;  /* Ett mjukt, rundat typsnitt */
+    font-size: 32px;  /* En balanserad storlek för att skapa en lugnare känsla */
+    font-weight: 400;  /* Lättare vikt för en vänligare ton */
+    text-align: center;  /* Centrera rubriken för en harmonisk look */
+    color: #cd0275;  /* Mjuk, varm grå nyans för en mjukare känsla */
+    letter-spacing: 1px;  /* Mjukt avstånd mellan bokstäverna för en luftigare känsla */
+    margin-bottom: 15px;  /* Lätt avstånd under rubriken */
+    text-shadow: none;  /* Inget skugga för att hålla det rent och mjukt */
+}
+
+.rubrik p {
+    font-family: 'Open Sans', sans-serif;  /* Ett enkelt och vänligt sans-serif typsnitt */
+    font-size: 18px;  /* Lagom storlek för att vara lättläst och avkopplande */
+    color: #495057;  /* En mjuk, neutral grå nyans för texten */
+    line-height: 1.8;  /* Ökat radavstånd för en mer luftig och lättläst text */
+    text-align: center;  /* Centrera texten för att skapa en balanserad look */
+    max-width: 750px;  /* Begränsa textbredden för bättre läsbarhet */
+    margin: 0 auto;  /* Centrera hela blocket */
+    padding: 20px;  /* Ge texten lite utrymme runt sig */
+}
+
+.rubrik {
+    background-color: #F4F6F9;  /* Ljus, nästan vit bakgrund för en lugn känsla */
+    border-radius: 20px;  /* Runda hörn för att göra designen mjukare */
+    padding: 40px;  /* Generöst utrymme runt texten för en luftig känsla */
+    box-shadow: 0px 8px 20px #d2ac148c;  /* Subtil skugga för ett mjukt djup */
+    text-align: center;  /* Centrera hela blocket för en mer harmonisk design */
+    width: 80%;  /* Responsiv bredd */
+    max-width: 850px;  /* Maximal bredd på blocket */
+    margin-top: 500px; /* Lägg till lite utrymme över rubriken */
+    padding-top: 20px; /* Alternativt kan du använda padding för att justera */
+    }
+
+
+/* --- "Mål & Utmaningar" --- */
+/* --- Sidans övergripande styling --- */
+body.mål-utmaningar-sida {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    background: linear-gradient(135deg, rgba(248, 239, 247, 1), rgba(255, 245, 195, 0.5), rgba(229, 233, 218, 0.6));
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.8;
+}
+
+/* --- Rubriker --- */
+body.mål-utmaningar-sida h1,
+body.mål-utmaningar-sida h2,
+body.mål-utmaningar-sida h3,
+body.mål-utmaningar-sida h4 {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    letter-spacing: 1px;
+    font-weight: 600; /* Viktigare rubriker */
+}
+
+/* --- Första rubrikstorlek och stil --- */
+body.mål-utmaningar-sida h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+/* --- Rubriker för sektionerna --- */
+body.mål-utmaningar-sida h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+body.mål-utmaningar-sida h3 {
+    font-size: 22px;
+    color: #34495e;
+    font-weight: normal;
+    margin-top: 30px;
+}
+
+body.mål-utmaningar-sida h4 {
+    font-size: 18px;
+    color: #7f8c8d;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+/* --- Justera all text för att vara mer tilltalande --- */
+body.mål-utmaningar-sida .textinnehåll, 
+body.mål-utmaningar-sida .Gemenskap-Motivation {
+    width: 80%;
+    max-width: 1200px;
+    margin: 40px auto;
+    text-align: left;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Justering för listor --- */
+body.mål-utmaningar-sida ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+body.mål-utmaningar-sida ul li {
+    font-size: 18px;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+/* --- Gemenskap & Motivation Box --- */
+body.mål-utmaningar-sida .Gemenskap-Motivation {
+    background-color: #e8f7f7;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* --- Gemenskap & Motivation Sektion --- */
+body.mål-utmaningar-sida .Gemenskap-Motivation h2 {
+    font-size: 36px;
+    color: #1abc9c;
+    margin-bottom: 20px;
+}
+
+body.mål-utmaningar-sida .Gemenskap-Motivation h3 {
+    font-size: 22px;
+    color: #34495e;
+    font-weight: normal;
+    margin-top: 15px;
+}
+
+body.mål-utmaningar-sida .Gemenskap-Motivation ul li {
+    font-size: 18px;
+    margin: 12px 0;
+    color: #2c3e50;
+}
+
+/* --- Community kommentarer --- */
+body.mål-utmaningar-sida .community-comments {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f4f6f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(205, 55, 55, 0.1);
+}
+
+body.mål-utmaningar-sida .community-comments h3 {
+    font-size: 24px;
+    color: #cd0275;
+    margin-bottom: 15px;
+}
+
+body.mål-utmaningar-sida .community-comments textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+body.mål-utmaningar-sida .community-comments input[type="submit"] {
+    padding: 12px 20px;
+    background-color: #cd0275;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+}
+
+body.mål-utmaningar-sida .community-comments input[type="submit"]:hover {
+    background-color: #b10060;
+}
+/* Bilden för "Din resa börjar här" */
+body.mål-utmaningar-sida .resa-bild img {
+    max-width: 80%; /* Gör bilden smalare */
+    border-radius: 15px; /* Rundar hörnen */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Lägger till en mjuk skugga för att ge djup */
+    top: 1000px;
+    transition: transform 0.3s ease; /* För att ge en smidig effekt vid hover */
+}
+
+/* Effekt när användaren hovrar över bilden */
+body.mål-utmaningar-sida .resa-bild img:hover {
+    transform: scale(1.05); /* Gör bilden lite större vid hover */
+}
+/* --- Justeringar för "Profil" --- */
+
+/* Fixar att rubriken inte döljs bakom navbaren */
+
+.rubrikprofil h3{
+    margin-top: 1500px; /* Justera denna siffra beroende på höjden på din navbar */
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    font-size: 100px;
+    font-weight: bold;
+    color: #333;
+    background: rgba(255, 255, 255, 0.616);
+}
+
+.textinnehåll {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    margin: 20px 90px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.textinnehåll img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+/* --- Fixar så att formuläret inte sticker utanför boxen --- */
+.create-goal {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.create-goal textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+/* --- Justeringar för knappar --- */
+.create-goal input[type="submit"], button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.textrader {
+    background: #ffffff; /* Ljus bakgrund */
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 12px; /* Rundade hörn för ett mjukt utseende */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Lätt skugga för att lyfta sektionen */
+    text-align: center;
+}
+
+.textrader h3 {
+    font-size: 1.8em;
+    font-family: 'Roboto', sans-serif; /* Ger rubriken samma stil som resten av sidan */
+    font-weight: lighter;
+    color: #34495e;
+    margin-bottom: 20px; /* Skapar lite utrymme under rubriken */
+}
+
+.textrader ul {
+    list-style: none; /* Tar bort punktlistor */
+    padding: 0;
+}
+
+.textrader ul li {
+    font-family: 'Roboto', sans-serif; /* Ger rubriken samma stil som resten av sidan */
+    background: #f4f4f4; /* Ljus bakgrund för varje listpunkt */
+    margin: 15px 0; /* Ger lite mellanrum mellan varje punkt */
+    padding: 15px; /* Skapar utrymme runt texten */
+    border-radius: 8px; /* Rundade hörn */
+    font-size: 1.1em; /* Större text för bättre läsbarhet */
+    font-weight: lighter;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover-effekt för listpunkter */
+.textrader ul li:hover {
+    background-color: #e1f7e1; /* Ljusgrön för att ge visuell feedback */
+    transform: translateY(-5px); /* Liten upplyftningseffekt när man hovrar */
+}
+
+.textrader ul li h3 {
+    font-size: 1.2em; /* Gör listans rubrik något större än vanlig text */
+    color: #2c3e50; /* Mörk färg för tydlig kontrast */
+    margin-bottom: 10px; /* Lite utrymme mellan texten och listpunkten */
+}
+
+.create-goal input[type="submit"]:hover, button:hover {
+    background-color: #16a085;
+}
+
+/* --- Modern stil för "Din resa & Framsteg" --- */
+.gemenskap-motivation, .framsteg-container {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.framsteg-container h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #34495e;
+}
+
+.framsteg-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.framsteg-container ul li {
+    background: #f4f4f4;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: normal;
+}
